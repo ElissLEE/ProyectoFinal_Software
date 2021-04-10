@@ -16,6 +16,10 @@
   <!-- Custom styles for this template -->
   <link href="css/small-business.css" rel="stylesheet">
 
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+ 
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -151,6 +155,81 @@
     </div>
     <!-- Grid container -->
   
+      <!-- Modal -->
+      <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Comprar Plan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" >
+                  
+                    <h5 >Ingrese la siguiente informacion</h5>
+                    <div class="alert alert-danger" id="verificacion" role="alert" style="display: none;">
+                      <span id="textoValidacion"></span>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-8 col-sm-6">
+                        <label class="text-left" >Nombre</label>
+                      </div>
+                      <div class="col-4 col-sm-6">
+                        <input class="form-text" id="texto-nombre"  placeholder="Nombre completo" />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 col-sm-6">
+                        <label class="form-label" >Cedula</label>
+                      </div>
+                      <div class="col-4 col-sm-6">
+                        <input class="form-text" id="texto-cedula"  placeholder="Cedula" />
+                      </div>
+                    </div>
+                   
+                    <div class="row">
+                      <div class="col-8 col-sm-6">
+                        <label class="form-label" >Tarjeta</label>
+                      </div>
+                      <div class="col-4 col-sm-6">
+                        <input class="form-text" id="texto-tarjeta"   placeholder="N. de tarjeta" />
+                      </div>
+                    </div>
+           
+                    <div class="row">
+                      <div class="col-8 col-sm-6">
+                        <label class="form-label" >Correo</label>
+                      </div>
+                      <div class="col-4 col-sm-6">
+                        <input class="form-text" id="texto-correo"   />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 col-sm-6">
+                        <label class="form-label" >Contraseña</label>
+                      </div>
+                      <div class="col-4 col-sm-6">
+                        <input class="form-text" type="password"  id="texto-contrasenia"    />
+                      </div>
+                    </div>
+                    <div class="alert alert-primary" id="verificacion" role="alert" style="display: none;">
+                      <span id="textoInformacion"></span>
+                    </div>
+                    <input class="form-text" hidden  id="texto-plan" />
+                     
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="limpiar()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="obtenerPlan()"> Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>   
+
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2020 Copyright:

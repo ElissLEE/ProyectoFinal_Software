@@ -48,6 +48,12 @@ section.pricing {
     transition: all 0.2s;
   }
   
+  .modal {
+
+    color: #000;
+    
+  }
+
   /* Hover Effects on Card */
   
   @media (min-width: 992px) {
