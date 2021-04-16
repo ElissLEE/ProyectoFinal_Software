@@ -172,20 +172,22 @@
                       <span id="textoValidacion"></span>
                     </div>
                     <br>
+                    
                     <div class="row">
                       <div class="col-8 col-sm-6">
                         <label class="text-left" >Nombre</label>
                       </div>
-                      <div class="col-4 col-sm-6">
-                        <input class="form-text" id="texto-nombre"  placeholder="Nombre completo" />
+                      <div class="col-4 col-sm-6">                    
+                        <input class="form-text" id="texto-nombre" type="text" placeholder="Nombre completo" onkeypress="soloLetras(event)"  required/>
                       </div>
                     </div>
+                
                     <div class="row">
                       <div class="col-8 col-sm-6">
                         <label class="form-label" >Cedula</label>
                       </div>
                       <div class="col-4 col-sm-6">
-                        <input class="form-text" id="texto-cedula"  placeholder="Cedula" />
+                        <input class="form-text validate " id="texto-cedula" maxlength="10"  minlength="10" type="text" placeholder="Cedula" onkeypress=" soloNumeros(event)" required />
                       </div>
                     </div>
                    
@@ -194,7 +196,7 @@
                         <label class="form-label" >Tarjeta</label>
                       </div>
                       <div class="col-4 col-sm-6">
-                        <input class="form-text" id="texto-tarjeta"   placeholder="N. de tarjeta" />
+                        <input class="form-text" id="texto-tarjeta"  maxlength="18" minlength="8"  placeholder="N. de tarjeta" onkeypress=" soloNumeros(event)" required/>
                       </div>
                     </div>
            
@@ -203,7 +205,7 @@
                         <label class="form-label" >Correo</label>
                       </div>
                       <div class="col-4 col-sm-6">
-                        <input class="form-text" id="texto-correo"   />
+                        <input class="form-text" id="texto-correo" type="email"  />
                       </div>
                     </div>
                     <div class="row">
@@ -211,7 +213,7 @@
                         <label class="form-label" >Contraseña</label>
                       </div>
                       <div class="col-4 col-sm-6">
-                        <input class="form-text" type="password"  id="texto-contrasenia"    />
+                        <input class="form-text" type="password"  id="texto-contrasenia"  maxlength="16" minlength="8" placeholder="8-16 caracteres"  />
                       </div>
                     </div>
                     <div class="alert alert-primary" id="verificacion" role="alert" style="display: none;">
@@ -262,7 +264,7 @@
   firebase.initializeApp(firebaseConfig);
 </script>
 <script src= "app.js"></script>
-
+<script src= "validaciones.js"></script>
 </body>
 
 </html>

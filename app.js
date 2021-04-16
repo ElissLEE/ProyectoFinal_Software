@@ -41,29 +41,41 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 });
 
 async function obtenerPlan() {
+ 
   const resultado = await db
     .collection("usuario")
     .where("correo", "==", email.value)
     .get();
 
-  if (resultado.size == 0) {
-    db.collection("usuario").add({
-      nombre: nombreCompleto.value,
-      cedula: cedulaU.value,
-      correo: email.value,
-      password: contrasenia.value,
-      tarjeta: numTarjeta.value,
-      plan: nombrePlan.value,
-    });
+    var validacion= validarCampos();
 
-    limpiar();
-    $("#modal").modal("hide");
-    
-  } else {
+   if (validacion == false) {
    
     alerta.style.display = "block";
-    textoValidacion.innerHTML = "Ya esta registrado con un plan";
-  }
+    textoValidacion.innerHTML = "Complete todos los campos ";
+   
+  } else{
+   
+    if (resultado.size == 0 && validacion != false)  {
+      db.collection("usuario").add({
+        nombre: nombreCompleto.value,
+        cedula: cedulaU.value,
+        correo: email.value,
+        password: contrasenia.value,
+        tarjeta: numTarjeta.value,
+        plan: nombrePlan.value,
+      });
+  
+      limpiar();
+      $("#modal").modal("hide");
+      
+    } else {
+     
+      alerta.style.display = "block";
+      textoValidacion.innerHTML = "Ya esta registrado con un plan";
+    }
+   }
+  
 }
 
 function limpiar() {
@@ -72,12 +84,10 @@ function limpiar() {
   numTarjeta.value = "";
   email.value = "";
   contrasenia.value = "";
-
   alerta.style.display = "none";
 }
 
 function mostrarPlan(plan) {
   document.getElementById("texto-plan").value = plan;
-
   $("#modal").modal("show");
 }
