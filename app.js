@@ -24,14 +24,10 @@ window.addEventListener("DOMContentLoaded", async (e) => {
            <h6 class="card-price text-center">${plan.precio}<span class="period">/month</span></h6>
            <hr>
            <ul class="fa-ul">
-             <li><span class="fa-li"><i class="fas fa-check"></i></span>cantidad de beneficiarios: ${plan.cantBeneficiarios}</li>
-             <li><span class="fa-li"><i class="fas fa-check"></i></span>5GB Storage</li>
-             <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
-             <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
-             <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Unlimited Private Projects</li>
-             <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Dedicated Phone Support</li>
-             <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Free Subdomain</li>
-             <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status Reports</li>
+             <li><span class="fa-li"><i class="fas fa-check"></i></span>Descripcion : ${plan.descripcion}</li>
+             <li><span class="fa-li"><i class="fas fa-check"></i></span>Calidad de servicio medico: ${plan.calidadServicioMedico}</li>
+             <li><span class="fa-li"><i class="fas fa-check"></i></span>Cantidad de beneficiarios: ${plan.cantBeneficiarios}</li>
+             <li><span class="fa-li"><i class="fas fa-check"></i></span>Cobertura de plan : ${plan.cobertura}</li>
            </ul>
            <button class="btn btn-block btn-primary text-uppercase" onclick="mostrarPlan('${plan.id}')">Comprar</button>
          </div>
