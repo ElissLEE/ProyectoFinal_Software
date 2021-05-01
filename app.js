@@ -11,6 +11,9 @@ const nombrePlan = document.getElementById("texto-plan");
 const alerta = document.getElementById("verificacion");
 const textoValidacion = document.getElementById("textoValidacion");
 
+var myModal1 = new bootstrap.Modal(document.getElementById('modal'), {
+  keyboard: false
+})
 window.addEventListener("DOMContentLoaded", async (e) => {
   const querySnapshot = await getPlanes();
   querySnapshot.forEach((doc) => {
@@ -61,12 +64,16 @@ async function obtenerPlan() {
         tarjeta: numTarjeta.value,
         plan: nombrePlan.value,
       });
-  
-      limpiar();
-      $("#modal").modal("hide");
+
+      auth
+        .createUserWithEmailAndPassword(email.value, contrasenia.value)
+        .then(userCredential =>  {
+          limpiar();
+          myModal1.hide()
+        })
       
     } else {
-     
+      limpiar();
       alerta.style.display = "block";
       textoValidacion.innerHTML = "Ya esta registrado con un plan";
     }
@@ -85,5 +92,88 @@ function limpiar() {
 
 function mostrarPlan(plan) {
   document.getElementById("texto-plan").value = plan;
-  $("#modal").modal("show");
+  myModal1.show()
 }
+
+//Login Check
+const loggedOut = document.querySelectorAll('.logged-out')
+const loggedIn = document.querySelectorAll('.logged-in')
+const loginCheck = user => {
+    if(user){
+        loggedIn.forEach(link => link.style.display = 'block');
+        loggedOut.forEach(link => link.style.display = 'none');
+
+    } else {
+        loggedIn.forEach(link => link.style.display = 'none');
+        loggedOut.forEach(link => link.style.display = 'block');
+    }
+}
+
+// Login 
+const loginForm = document.querySelector('#login-form')
+  
+var myModal2 = new bootstrap.Modal(document.getElementById('loginModal'), {
+  keyboard: false
+})
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const email= document.querySelector('#login-email').value;
+  const password = document.querySelector('#login-password').value;
+
+  auth
+    .signInWithEmailAndPassword(email, password)
+    .then(userCredential => {
+
+     //Clear the Form
+     loginForm.reset();
+
+     //Close Modal 
+     myModal2.hide()
+     console.log('Logueado');
+    })
+
+})
+
+//Logout
+const logout = document.querySelector('#logout');
+
+logout.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    auth.signOut().then(() => {
+        console.log('Cerrar Sesión');
+    })
+})
+
+//Google Login
+
+const googleLogin = document.querySelector('#googleLogin');
+googleLogin.addEventListener('click', e => {
+    e.preventDefault();
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then(result => {
+             //Clear the Form
+            loginForm.reset();
+
+            //Close Modal 
+            myModal2.hide()
+            console.log('google logueado');
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
+
+//Events
+//Estado usuario logueado
+auth.onAuthStateChanged(user => {
+  if(user){
+          loginCheck(user);
+  } else {
+      loginCheck(user);
+  }
+})
