@@ -59,8 +59,49 @@
         </div>
       </div>
     </nav>
+    
 
     <div class="container my-5">
         <h3 align=center>Aquí iría la información de su plan</h3>
     </div>
+
+    <!-- BOOSTRAP SCRIPTS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- FIREBASE SCRIPTS-->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-firestore.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+<script>
     
+      
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDTCF1iZ4iVBrc5o8miXd1CjIb5Emhz9pg",
+    authDomain: "proyecto-final-software.firebaseapp.com",
+    projectId: "proyecto-final-software",
+    storageBucket: "proyecto-final-software.appspot.com",
+    messagingSenderId: "456369773792",
+    appId: "1:456369773792:web:b1422a95e2a29db0f28485"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const fs = firebase.firestore();
+</script>
+
+    
+    <!-- CUSTOM CODE -->
+    <script src= "miplan.js"></script>
+    <script src= "validaciones.js"></script>
+    </body>
+
+    </html> 
