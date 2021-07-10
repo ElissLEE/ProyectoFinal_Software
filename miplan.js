@@ -1,6 +1,6 @@
-const db = firebase.firestore();
-const getUser = () => db.collection("usuario").get();
-const getPlanes = () => db.collection("planes").get();
+const db2 = firebase.firestore();
+const getUser = () => db2   .collection("usuario").get();
+const getPlanes = () => db2.collection("planes").get();
 
 //Login Check
 const loggedOut = document.querySelectorAll('.logged-out')
