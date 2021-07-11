@@ -1,7 +1,7 @@
 const db2 = firebase.firestore();
 const getUser = () => db2   .collection("usuario").get();
 const getPlanes = () => db2.collection("planes").get();
-
+const card = document.getElementById("InfoPlan");
 //Login Check
 const loggedOut = document.querySelectorAll('.logged-out')
 const loggedIn = document.querySelectorAll('.logged-in')
@@ -15,7 +15,7 @@ const loginCheck = async (user) => {
 
         querySnapshot.docs.forEach( async (doc) => {
 
-            if(user.email == doc.data().correo){
+            if(user.email.toUpperCase() == doc.data().correo.toUpperCase()){
 
                 usuario = doc.data()
                 console.log(usuario.plan)
@@ -27,7 +27,12 @@ const loginCheck = async (user) => {
                     if(usuario.plan == plan.data().nombre){
 
                         console.log(plan.data().nombre)
-
+                        card.innerHTML += `
+                            
+                            ${plan.data().nombre}
+                            
+                            
+                            `;
                     }
 
                 });
