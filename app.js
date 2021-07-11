@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
              <li><span class="fa-li"><i class="fas fa-check"></i></span>Cantidad de beneficiarios: ${plan.cantBeneficiarios}</li>
              <li><span class="fa-li"><i class="fas fa-check"></i></span>Cobertura de plan : ${plan.cobertura}</li>
            </ul>
-           <button class="btn btn-block btn-primary text-uppercase" onclick="mostrarPlan('${plan.id}')">Comprar</button>
+           <button class="btn btn-block btn-primary text-uppercase" onclick="mostrarPlan('${plan.nombre}')">Comprar</button>
          </div>
        </div>
      </div>`;
@@ -63,6 +63,7 @@ async function obtenerPlan() {
         password: contrasenia.value,
         tarjeta: numTarjeta.value,
         plan: nombrePlan.value,
+        
       });
 
       auth
