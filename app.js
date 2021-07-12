@@ -56,6 +56,7 @@ async function obtenerPlan() {
   } else{
    
     if (resultado.size == 0 && validacion != false)  {
+      var beneficiarios=new Array(0);
       db.collection("usuario").add({
         nombre: nombreCompleto.value,
         cedula: cedulaU.value,
@@ -63,7 +64,7 @@ async function obtenerPlan() {
         password: contrasenia.value,
         tarjeta: numTarjeta.value,
         plan: nombrePlan.value,
-        
+        beneficiarios : beneficiarios
       });
 
       auth

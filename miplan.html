@@ -60,30 +60,48 @@
       </div>
     </nav>
     
+<!--Informacion Del Plan-->
+
+<div class="container my-5">
+ <div class="card"> 
+   <h5 class="card-header" id="cuenta-card"></div>
+      <h4 class="card" id="beneficiarios-card"></h4>
+  </div>
+</div>
+</div>
+
+<div class="container my-5">
+      
+  <div class="row justify-content-md-center" id = "Alerta-Plan">
+
+  </div>
+</div>
 
     <div class="container my-5">
-      <div class="card">
-        <h3 align=center>Aquí esta la información de su plan</h3>
-              <div class="row">
                 <div class="container">
                   <div class="row justify-content-md-center">
+                    <h5 class="card-header">Aqui esta la informacion de tu plan</h5>
                     <div class ="card" id="InfoPlan"></div>
                   </div>
-                  <div class="row">
+                   <div class = "card-footer">
                     <div class="row justify-content-md-center">
                       <div class="col col-lg-2">
-                        <button class="btn btn-primary">Agregar Benefiario</button>
+                        <button type="button" class="btn btn-primary" onclick="agregarBeneficiario()" >Agregar Beneficiario</button>
                       </div>
                       <div class="col col-lg-2">
-                        <button class="btn btn-primary"> <p>Actualizar Plan</p></button>
+                        <button type="button" class="btn btn-primary" onclick=""> <p>Actualizar Plan</p></button>
+                      </div>
+                      <div class="col col-lg-2">
+                        <button type="button" class="btn btn-primary" onclick="eliminarBeneficiario()"> <p>Eliminar Beneficiario</p></button>
                       </div>
                     </div>
+                   </div> 
                   </div>
                 </div>
-              </div>
-      </div> 
-    </div>
 
+    
+
+   
 
 
     <!-- BOOSTRAP SCRIPTS-->
