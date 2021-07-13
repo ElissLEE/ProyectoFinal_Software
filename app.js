@@ -135,7 +135,6 @@ loginForm.addEventListener('submit', (e) => {
      myModal2.hide()
      console.log('Logueado');
     })
-
 })
 
 //Logout
@@ -148,27 +147,6 @@ logout.addEventListener('click', (e) => {
         console.log('Cerrar Sesión');
     })
 })
-
-//Google Login
-
-const googleLogin = document.querySelector('#googleLogin');
-googleLogin.addEventListener('click', e => {
-    e.preventDefault();
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-        .then(result => {
-             //Clear the Form
-            loginForm.reset();
-
-            //Close Modal 
-            myModal2.hide()
-            console.log('google logueado');
-        })
-        .catch(err => {
-            console.log(err);
-        })
-})
-
 
 //Events
 //Estado usuario logueado

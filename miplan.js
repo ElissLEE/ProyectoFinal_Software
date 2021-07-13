@@ -1,7 +1,9 @@
 const db2 = firebase.firestore();
 const getUser = () => db2.collection("usuario").get();
 const getPlanes = () => db2.collection("planes").get();
-const card = document.getElementById("InfoPlan");
+const card = document.getElementById("info-card");
+const cardPer = document.getElementById("infoPer-card");
+const cardUser = document.getElementById("user-card");
 const cardCuenta = document.getElementById("cuenta-card");
 const cardBeneficiarios= document.getElementById("beneficiarios-card")
 const divAlerta= document.getElementById("Alerta-Plan")
@@ -29,20 +31,27 @@ const loginCheck = async (user) => {
 
                     if(usuario.plan == plan.data().nombre){
 
-                        cardCuenta.innerHTML += `<h1>Cuenta :${usuario.correo}</h1>`;
-                        cardBeneficiarios.innerHTML += `<h4>Tu plan te permite registrar esta cantidad de beneficiarios :${plan.data().cantBeneficiarios}</h4>`;
-                        card.innerHTML += `
+                        cardUser.innerHTML += `<h1>Hola ${usuario.nombre}!</h1>`;
+                        cardCuenta.innerHTML += `<h7>Correo:${usuario.correo}</h7>`;
+                        cardBeneficiarios.innerHTML += `<h7>Tu plan te permite registrar esta cantidad de beneficiarios:${plan.data().cantBeneficiarios}</h7>`;
+                        card.innerHTML += `  
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Tipo de Plan : </h7><h7>${plan.data().nombre} - ${plan.data().calidadServicioMedico}</h7> </li>
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Descripción : </h7><h7>${plan.data().descripcion}</h7> </li>
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Cobertura : </h7><h7>${plan.data().cobertura}</h7> </li>
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Beneficiarios (${usuario.beneficiarios.length} de ${plan.data().cantBeneficiarios} permitidos) : </h7><h7>${usuario.beneficiarios}</h7>
+                            <div class="my-2"><button type="button" class="btn btn-primary" onclick="agregarBeneficiario()">Agregar Beneficiario</button>
+                            <button type="button" class="btn btn-primary" onclick="eliminarBeneficiario()">Eliminar Beneficiario</button></div></li>
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Precio : </h7><h7>${plan.data().precio} COP</h7></li>
+                            </ul>
+                            `;
                         
-                        <div class="row justify-content-md-center">
-                            <div class="col col-md-8">
-                                <p>
-                                <h3> Tipo de Plan : ${plan.data().nombre}</h3> 
-                              <div id="beneficiarios-div"> <h3> Cantidad de Beneficiarios Permitidos :${plan.data().cantBeneficiarios} </div></h3>
-                                <h3> Beneficiarios Registrados : ${usuario.beneficiarios.length}
-                                </p>
-                            </div>    
-                         </div>
-    
+                        cardPer.innerHTML += `
+                            <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Cedula : </h7><h7>${usuario.cedula}</h7> </li>
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Correo : </h7><h7>${usuario.correo}</h7> </li>
+                            <li class="list-group-item"><h7 style="font-weight: bold;"> Tarjeta : </h7><h7>${usuario.tarjeta}</h7> </li>
+                            </ul>
                             `;
                     }
 
@@ -80,7 +89,7 @@ async function agregarBeneficiario()
             if(usuario.beneficiarios.length < permitido)
             { 
             var miUsuario = usuario;
-            var nuevoArreglo= miUsuario.beneficiarios;  nuevoArreglo.push('');
+            var nuevoArreglo= miUsuario.beneficiarios;  nuevoArreglo.push('1');
             var usuarioRef = db2.collection("usuario").doc(doc.id);
             console.log(miUsuario)
              db2.runTransaction((transaction) => {
@@ -103,13 +112,13 @@ async function agregarBeneficiario()
             });
            
             }else{
-                divAlerta.innerHTML+= `
-            <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                <h4 class="card-header"> Ya no puedes agregar mas beneficiarios !!!!</h4>
+                divAlerta.innerHTML+= ` <div class="container-fluid"><div class="row">
+            <div class="card text-white bg-danger mb-3">
+                <h4 class="card-header">Ya no puedes agregar más beneficiarios!</h4>
                 <div class="card-body">
                   <h6 class="card-title">Actualiza tu plan si deseas registrar mas beneficiarios en tu cuenta</h5>
                 </div>
-              </div>`;
+              </div></div></div>`;
             }
            
         }
@@ -137,7 +146,7 @@ async function eliminarBeneficiario()
             if(usuario.beneficiarios.length != 0)
             { 
             var miUsuario = usuario;
-            var nuevoArreglo= miUsuario.beneficiarios;  nuevoArreglo.pop('');
+            var nuevoArreglo= miUsuario.beneficiarios;  nuevoArreglo.pop('1');
             var usuarioRef = db2.collection("usuario").doc(doc.id);
             console.log(miUsuario)
              db2.runTransaction((transaction) => {
@@ -160,25 +169,18 @@ async function eliminarBeneficiario()
             });
            
             }else{
-                divAlerta.innerHTML+= `
-            <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                <h4 class="card-header"> Ya no tienes ningun beneficiario !!!!</h4>
+                divAlerta.innerHTML+= `<div class="container-fluid"><div class="row">
+            <div class="card text-white bg-warning mb-3">
+                <h4 class="card-header">Ya no tienes beneficiarios!</h4>
                 <div class="card-body">
-                  <h6 class="card-title">Agrega beneficiarios para registrarlos a tu cuenta</h5>
+                  <h6 class="card-title">Agrega beneficiarios para registrarlos en tu cuenta</h5>
                 </div>
-              </div>`;
+              </div></div></div>`;
             }
            
         }
     })
 }
-// Login 
-const loginForm = document.querySelector('#login-form')
-  
-var myModal2 = new bootstrap.Modal(document.getElementById('loginModal'), {
-  keyboard: false
-})
-
 
 //Logout
 const logout = document.querySelector('#logout');

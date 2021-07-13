@@ -61,43 +61,50 @@
     </nav>
     
 <!--Informacion Del Plan-->
-
-<div class="container my-5">
- <div class="card"> 
-   <h5 class="card-header" id="cuenta-card"></div>
-      <h4 class="card" id="beneficiarios-card"></h4>
-  </div>
-</div>
-</div>
-
-<div class="container my-5">
+<div class="container my-3">
       
   <div class="row justify-content-md-center" id = "Alerta-Plan">
 
   </div>
 </div>
 
+
+<div class="container">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Información Plan</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Información Personal</a>
+    </div>
+  </nav>
+  <!-- Tabs -->
+  <div class="tab-content" id="nav-tabContent">
+    <h1 class="card-title mx-4 my-4" id="user-card"></h1>
+    <!-- Tab Información del plan -->
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="card card border-primary"> 
+          <h5 class="card-header bg-primary border-primary" style="color: white;">Esta es la información de tu plan:</h5>
+          <h7 class="card-text" id="info-card"></h7>
+        </div>
+    </div>
+
+    <!-- Tab Información personal -->
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="card border-primary"> 
+        <h5 class="card-header bg-primary border-primary" style="color: white;">Esta es tu información personal:</h5>
+        <h7 class="card-text" id="infoPer-card"></h7>
+      </div>
+    </div>
+    <div class="container-fluid"><div class="row">
+      <button type="button" class="btn btn-primary my-4" onclick="">Actualizar Plan</button>
+    </div>
+    </div>
+  </div>
+</div>
+
     <div class="container my-5">
-                <div class="container">
-                  <div class="row justify-content-md-center">
-                    <h5 class="card-header">Aqui esta la informacion de tu plan</h5>
-                    <div class ="card" id="InfoPlan"></div>
-                  </div>
-                   <div class = "card-footer">
-                    <div class="row justify-content-md-center">
-                      <div class="col col-lg-2">
-                        <button type="button" class="btn btn-primary" onclick="agregarBeneficiario()" >Agregar Beneficiario</button>
-                      </div>
-                      <div class="col col-lg-2">
-                        <button type="button" class="btn btn-primary" onclick=""> <p>Actualizar Plan</p></button>
-                      </div>
-                      <div class="col col-lg-2">
-                        <button type="button" class="btn btn-primary" onclick="eliminarBeneficiario()"> <p>Eliminar Beneficiario</p></button>
-                      </div>
-                    </div>
-                   </div> 
-                  </div>
-                </div>
+                  <h7 class="card-text" id="cuenta-card" style="color: white;"></h7>
+                  <h7 class="card-text" id="beneficiarios-card" style="color: white;"></h7>
+    </div>
 
     
 
