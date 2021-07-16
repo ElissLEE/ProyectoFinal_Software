@@ -12,8 +12,11 @@ const contenedorPlanes = document.getElementById("contenedor-infoPlan");
 //Login Check
 const loggedOut = document.querySelectorAll('.logged-out')
 const loggedIn = document.querySelectorAll('.logged-in')
+
+//Cambiar plan
 const numTarjeta = document.getElementById("texto-Tarjeta");
 const nombrePlan = document.getElementById("texto-plan");
+const alerta = document.getElementById("verificacion");
 //modal
 var myModal2 = new bootstrap.Modal(document.getElementById('modal'), {
     keyboard: false
@@ -295,4 +298,5 @@ async function modificarPlan() {
     
         numTarjeta.value = "";
         myModal2.hide()
+        alerta.style.display = "none";
       }

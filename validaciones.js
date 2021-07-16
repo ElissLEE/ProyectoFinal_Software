@@ -17,6 +17,9 @@ function soloLetras(e){
      alerta.style.display = "block";
      textoValidacion.innerHTML = "ingrese solo letras ";
   }
+  else{
+    alerta.style.display = "none";
+  }
 }
 
 function soloNumeros(e){
@@ -29,15 +32,21 @@ function soloNumeros(e){
     alerta.style.display = "block";
     textoValidacion.innerHTML = "ingrese solo numeros";
   }
+  else{
+    alerta.style.display = "none";
+  }
 }
 
 function limpia() {
+
   var val = document.getElementById("texto-nombre").value;
   var tam = val.length;
+ 
   for(i = 0; i < tam; i++) {
       if(isNaN(val[i]))
           document.getElementById("texto-nombre").value = '';
   }
+ 
 }
 
 function validarCampos(){
