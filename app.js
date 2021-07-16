@@ -14,7 +14,6 @@ const textoValidacion = document.getElementById("textoValidacion");
 var myModal1 = new bootstrap.Modal(document.getElementById('modal'), {
   keyboard: false
 })
-
 window.addEventListener("DOMContentLoaded", async (e) => {
   const querySnapshot = await getPlanes();
   querySnapshot.forEach((doc) => {
@@ -81,7 +80,7 @@ async function obtenerPlan() {
       textoValidacion.innerHTML = "Ya esta registrado con un plan";
     }
    }
-   
+  
 }
 
 function limpiar() {
@@ -91,6 +90,7 @@ function limpiar() {
   email.value = "";
   contrasenia.value = "";
   alerta.style.display = "none";
+  myModal1.hide()
 }
 
 function mostrarPlan(plan) {

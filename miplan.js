@@ -12,8 +12,12 @@ const contenedorPlanes = document.getElementById("contenedor-infoPlan");
 //Login Check
 const loggedOut = document.querySelectorAll('.logged-out')
 const loggedIn = document.querySelectorAll('.logged-in')
-
-
+const numTarjeta = document.getElementById("texto-Tarjeta");
+const nombrePlan = document.getElementById("texto-plan");
+//modal
+var myModal2 = new bootstrap.Modal(document.getElementById('modal'), {
+    keyboard: false
+  })
 
 const loginCheck = async (user) => {
     if(user){
@@ -236,4 +240,59 @@ async function cambiarPlan()
 function mostrarNuevoPlan(nombreNuevoPlan)
 {
     document.getElementById("nombrePlan").innerHTML= nombreNuevoPlan;
+    nombrePlan.value = nombreNuevoPlan
+    myModal2.show()
 }
+
+async function modificarPlan() {
+
+    var correo = cardCuenta.textContent
+    var correoArray= correo.split(":")
+    correo= correoArray[1]
+
+    const resultado = await db2
+      .collection("usuario")
+      .where("correo", "==", correo)
+      .get();
+  
+      
+
+      var validacion= validarCampo();
+  
+     if (validacion == false) {
+     
+      alerta.style.display = "block";
+      textoValidacion.innerHTML = "Complete los campos ";
+     
+    } else{
+     
+      if (resultado.size != 0  && validacion != false)  {
+          
+        resultado.docs.forEach( async (doc)=>{
+            console.log(doc.id)
+
+           var info =  db2. collection("usuario").doc(doc.id)
+           
+           info.update({                   
+            
+                tarjeta: numTarjeta.value,
+                plan: nombrePlan.value,
+                beneficiarios: []
+                });
+        })
+    
+        limpiar();
+        myModal2.hide()
+        
+      } else {
+        limpiar();
+        alerta.style.display = "block";
+      }
+     }
+    }
+
+    function limpiar() { 
+    
+        numTarjeta.value = "";
+        myModal2.hide()
+      }

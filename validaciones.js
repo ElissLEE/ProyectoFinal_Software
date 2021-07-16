@@ -5,7 +5,7 @@ const correo = document.getElementById("texto-correo");
 const password = document.getElementById("texto-contrasenia");
 const alertav = document.getElementById("verificacion");
 const texto = document.getElementById("textoValidacion");
-
+const tarjeta2 = document.getElementById("texto-Tarjeta");
 
 function soloLetras(e){
 
@@ -27,7 +27,7 @@ function soloNumeros(e){
 
   if (letras.indexOf(tecla)== -1) {
     alerta.style.display = "block";
-    textoValidacion.innerHTML = "ingrese solo numeros ";
+    textoValidacion.innerHTML = "ingrese solo numeros";
   }
 }
 
@@ -48,3 +48,10 @@ function validarCampos(){
     return false;  
   }
 
+  function validarCampo(){
+
+    if ( tarjeta2.value !="")  {
+      return true;
+    } 
+    return false;  
+  }

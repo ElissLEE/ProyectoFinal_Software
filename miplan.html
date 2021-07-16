@@ -117,6 +117,48 @@
                   <h7 class="card-text" id="beneficiarios-card" style="color: white;"></h7>
     </div>
 
+<!--Modal-->
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Comprar Plan</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body" >
+                
+                  <h5 >Ingrese la siguiente informacion</h5>
+                  <div class="alert alert-info" id="info" role="alert" >
+                    Recuerda que si te cambias de plan deberas volver a ingresar a tus beneficiarios
+                  </div>
+                  <div class="alert alert-danger" id="verificacion" role="alert" style="display: none;">
+                    <span id="textoValidacion"></span>
+                  </div>
+                  <br>
+                   
+                  <div class="row">
+                    <div class="col-8 col-sm-6">
+                      <label class="form-label" >Tarjeta</label>
+                    </div>
+                    <div class="col-4 col-sm-6">
+                      <input class="form-text" id="texto-Tarjeta"  maxlength="18" minlength="8"  placeholder="N. de tarjeta" onkeypress="soloNumeros(event)" required/>
+                    </div>
+                  </div>
+        
+                  <input class="form-text" hidden  id="texto-plan" />
+                   
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="limpiar()">Cancelar</button>
+                  <button type="button" class="btn btn-primary" onclick="modificarPlan()"> Aceptar</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</div>   
     
 
    
