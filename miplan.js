@@ -7,6 +7,8 @@ const cardUser = document.getElementById("user-card");
 const cardCuenta = document.getElementById("cuenta-card");
 const cardBeneficiarios= document.getElementById("beneficiarios-card")
 const divAlerta= document.getElementById("Alerta-Plan")
+const cardPlanes = document.getElementById("planes");
+const contenedorPlanes = document.getElementById("contenedor-infoPlan");
 //Login Check
 const loggedOut = document.querySelectorAll('.logged-out')
 const loggedIn = document.querySelectorAll('.logged-in')
@@ -41,7 +43,7 @@ const loginCheck = async (user) => {
                             <li class="list-group-item"><h7 style="font-weight: bold;"> Cobertura : </h7><h7>${plan.data().cobertura}</h7> </li>
                             <li class="list-group-item"><h7 style="font-weight: bold;"> Beneficiarios (${usuario.beneficiarios.length} de ${plan.data().cantBeneficiarios} permitidos) : </h7><h7>${usuario.beneficiarios}</h7>
                             <div class="my-2"><button type="button" class="btn btn-primary" onclick="agregarBeneficiario()">Agregar Beneficiario</button>
-                            <button type="button" class="btn btn-primary" onclick="eliminarBeneficiario()">Eliminar Beneficiario</button></div></li>
+                            <button type="button" class="btn btn-danger" onclick="eliminarBeneficiario()">Eliminar Beneficiario</button></div></li>
                             <li class="list-group-item"><h7 style="font-weight: bold;"> Precio : </h7><h7>${plan.data().precio} COP</h7></li>
                             </ul>
                             `;
@@ -202,3 +204,36 @@ auth.onAuthStateChanged(user => {
       loginCheck(user);
   }
 })
+
+async function cambiarPlan()
+{ 
+    document.getElementById("titulo").style.display="block";
+    contenedorPlanes.style.display="none";
+        const querySnapshot =  await getPlanes();
+        querySnapshot.forEach((doc) => {
+          plan = doc.data();
+          plan.id = doc.id;
+          
+          cardPlanes.innerHTML += ` <div class="col-lg-4">
+             <div class="card mb-5 mb-lg-0">
+               <div class="card-body">
+                 <h5 class="card-title text-muted text-uppercase text-center">${plan.nombre}</h5>
+                 <h6 class="card-price text-center">${plan.precio}<span class="period">/month</span></h6>
+                 <hr>
+                 <ul class="fa-ul">
+                   <li><span class="fa-li"><i class="fas fa-check"></i></span>Descripcion : ${plan.descripcion}</li>
+                   <li><span class="fa-li"><i class="fas fa-check"></i></span>Calidad de servicio medico: ${plan.calidadServicioMedico}</li>
+                   <li><span class="fa-li"><i class="fas fa-check"></i></span>Cantidad de beneficiarios: ${plan.cantBeneficiarios}</li>
+                   <li><span class="fa-li"><i class="fas fa-check"></i></span>Cobertura de plan : ${plan.cobertura}</li>
+                 </ul>
+                 <button class="btn btn-block btn-primary text-uppercase" onclick="mostrarNuevoPlan('${plan.nombre}')">Seleccionar</button>
+               </div>
+             </div>
+           </div>`;
+        });
+}
+
+function mostrarNuevoPlan(nombreNuevoPlan)
+{
+    document.getElementById("nombrePlan").innerHTML= nombreNuevoPlan;
+}

@@ -76,17 +76,25 @@
       <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Información Personal</a>
     </div>
   </nav>
+  <h5 id="titulo" class="card-header bg-primary border-primary" style="color: white; display:none">Selecciona un nuevo plan</h5>
+  <h5 id="nombrePlan" class="card-header bg-primary border-primary" style="color: white; display:none">nombre plan</h5>
+  <div id="contenedor-infoPlan">
   <!-- Tabs -->
   <div class="tab-content" id="nav-tabContent">
     <h1 class="card-title mx-4 my-4" id="user-card"></h1>
     <!-- Tab Información del plan -->
+    
+
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
         <div class="card card border-primary"> 
           <h5 class="card-header bg-primary border-primary" style="color: white;">Esta es la información de tu plan:</h5>
           <h7 class="card-text" id="info-card"></h7>
         </div>
-    </div>
 
+        <button type="button" class="btn btn-primary my-4" onclick="cambiarPlan()">Cambiar Plan</button>
+    </div>
+  
+    
     <!-- Tab Información personal -->
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
       <div class="card border-primary"> 
@@ -95,10 +103,13 @@
       </div>
     </div>
     <div class="container-fluid"><div class="row">
-      <button type="button" class="btn btn-primary my-4" onclick="">Actualizar Plan</button>
+      
     </div>
     </div>
   </div>
+  </div>
+  <br><br>
+  <div class="row" id="planes"></div>
 </div>
 
     <div class="container my-5">
@@ -148,6 +159,7 @@
     <!-- CUSTOM CODE -->
     <script src= "miplan.js"></script>
     <script src= "validaciones.js"></script>
+    <script src= "app.js"></script>
     </body>
 
     </html> 
