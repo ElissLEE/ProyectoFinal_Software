@@ -9,6 +9,8 @@ const cardBeneficiarios= document.getElementById("beneficiarios-card")
 const divAlerta= document.getElementById("Alerta-Plan")
 const cardPlanes = document.getElementById("planes");
 const contenedorPlanes = document.getElementById("contenedor-infoPlan");
+const textoNombre= document.getElementById("texto-nombre")
+const textoElim= document.getElementById("texto-elim")
 //Login Check
 const loggedOut = document.querySelectorAll('.logged-out')
 const loggedIn = document.querySelectorAll('.logged-in')
@@ -19,6 +21,12 @@ const nombrePlan = document.getElementById("texto-plan");
 const alerta = document.getElementById("verificacion");
 //modal
 var myModal2 = new bootstrap.Modal(document.getElementById('modal'), {
+    keyboard: false
+  })
+var myModal3 = new bootstrap.Modal(document.getElementById('benefModal'), {
+    keyboard: false
+  })
+  var myModal4 = new bootstrap.Modal(document.getElementById('elimModal'), {
     keyboard: false
   })
 
@@ -49,8 +57,8 @@ const loginCheck = async (user) => {
                             <li class="list-group-item"><h7 style="font-weight: bold;"> Descripción : </h7><h7>${plan.data().descripcion}</h7> </li>
                             <li class="list-group-item"><h7 style="font-weight: bold;"> Cobertura : </h7><h7>${plan.data().cobertura}</h7> </li>
                             <li class="list-group-item"><h7 style="font-weight: bold;"> Beneficiarios (${usuario.beneficiarios.length} de ${plan.data().cantBeneficiarios} permitidos) : </h7><h7>${usuario.beneficiarios}</h7>
-                            <div class="my-2"><button type="button" class="btn btn-primary" onclick="agregarBeneficiario()">Agregar Beneficiario</button>
-                            <button type="button" class="btn btn-danger" onclick="eliminarBeneficiario()">Eliminar Beneficiario</button></div></li>
+                            <div class="my-2"> <button type="button" class="btn btn-primary" onclick="ventanaAgregar()">Agregar Beneficiario</button>
+                            <button type="button" class="btn btn-danger" onclick="ventanaEliminar()" >Eliminar Beneficiario</button></div></li>
                             <li class="list-group-item"><h7 style="font-weight: bold;"> Precio : </h7><h7>${plan.data().precio} COP</h7></li>
                             </ul>
                             `;
@@ -72,7 +80,15 @@ const loginCheck = async (user) => {
     } 
 }
 
+async function ventanaEliminar()
+{
+    myModal4.show()
+}
 
+async function ventanaAgregar()
+{
+    myModal3.show() 
+}
 
 async function agregarBeneficiario()
 {
@@ -98,7 +114,7 @@ async function agregarBeneficiario()
             if(usuario.beneficiarios.length < permitido)
             { 
             var miUsuario = usuario;
-            var nuevoArreglo= miUsuario.beneficiarios;  nuevoArreglo.push('1');
+            var nuevoArreglo= miUsuario.beneficiarios;  nuevoArreglo.push(textoNombre.value);
             var usuarioRef = db2.collection("usuario").doc(doc.id);
             console.log(miUsuario)
              db2.runTransaction((transaction) => {
@@ -128,6 +144,7 @@ async function agregarBeneficiario()
                   <h6 class="card-title">Actualiza tu plan si deseas registrar mas beneficiarios en tu cuenta</h5>
                 </div>
               </div></div></div>`;
+                myModal3.hide()
             }
            
         }
@@ -155,7 +172,12 @@ async function eliminarBeneficiario()
             if(usuario.beneficiarios.length != 0)
             { 
             var miUsuario = usuario;
-            var nuevoArreglo= miUsuario.beneficiarios;  nuevoArreglo.pop('1');
+            var dato = textoElim.value;
+
+            var nuevoArreglo= miUsuario.beneficiarios;  
+            let pos = nuevoArreglo.indexOf(dato);
+            
+            nuevoArreglo.splice(pos,1);
             var usuarioRef = db2.collection("usuario").doc(doc.id);
             console.log(miUsuario)
              db2.runTransaction((transaction) => {
@@ -185,6 +207,7 @@ async function eliminarBeneficiario()
                   <h6 class="card-title">Agrega beneficiarios para registrarlos en tu cuenta</h5>
                 </div>
               </div></div></div>`;
+              myModal4.hide();
             }
            
         }
